@@ -20,4 +20,8 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
 
+    @Query("SELECT enabled FROM AppUser WHERE email = ?1")
+    boolean isEnabled(String email);
+
+    Optional<Object> findByEnabled(boolean enabled);
 }

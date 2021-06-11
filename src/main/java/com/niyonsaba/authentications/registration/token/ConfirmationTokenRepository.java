@@ -1,5 +1,6 @@
 package com.niyonsaba.authentications.registration.token;
 
+import com.niyonsaba.authentications.appuser.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,4 +22,13 @@ public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationT
             "WHERE c.token = ?1")
     int updateConfirmedAt(String token,
                           LocalDateTime confirmedAt);
+
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE ConfirmationToken c " +
+//            "SET c.confirmedAt = ?3, c.token = ?2" +
+//            "WHERE c.appUser = ?1")
+//    int updateToken(AppUser appUser, String token, LocalDateTime confirmedAt);
+
+    ConfirmationToken findByAppUserId(Long app_user_id);
 }
